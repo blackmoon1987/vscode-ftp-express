@@ -2,7 +2,7 @@
   "name": "vscode-ftp-express",
   "displayName": "VSCode FTP Express",
   "description": "Fast and reliable FTP/SFTP synchronization for VS Code with bulk operations support",
-  "version": "0.3.9",
+  "version": "1.0.0",
   "publisher": "blackmoon",
   "author": {
     "name": "blackmoon",
@@ -24,7 +24,7 @@
   "categories": [
     "Other"
   ],
-  "icon": "icon.png",
+  "icon": "512x512.png",
   "activationEvents": [
     "onCommand:extension.ftpexpressinit",
     "onCommand:extension.ftpexpressupload",
@@ -130,8 +130,9 @@
     "chai": "^4.3.4"
   },
   "scripts": {
-    "test": "mocha test/**/*.test.js",
-    "test:watch": "mocha test/**/*.test.js --watch"
+    "test": "node ./test/run-tests.js",
+    "vscode:package": "vsce package",
+    "vscode:publish": "vsce publish"
   },
   "dependencies": {
     "fs-cp": "^1.3.1",
