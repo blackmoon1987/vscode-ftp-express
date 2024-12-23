@@ -1,0 +1,147 @@
+{
+  "name": "vscode-ftp-express",
+  "displayName": "VSCode FTP Express",
+  "description": "Fast and reliable FTP/SFTP synchronization for VS Code with bulk operations support",
+  "version": "0.3.9",
+  "publisher": "blackmoon",
+  "author": {
+    "name": "blackmoon",
+    "email": "blackmoon@mail.com",
+    "url": "https://buymeacoffee.com/black.moon"
+  },
+  "engines": {
+    "vscode": "^0.10.1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackmoon/vscode-ftp-express/issues"
+  },
+  "homepage": "https://github.com/blackmoon/vscode-ftp-express#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackmoon/vscode-ftp-express.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onCommand:extension.ftpexpressinit",
+    "onCommand:extension.ftpexpressupload",
+    "onCommand:extension.ftpexpressdownload",
+    "onCommand:extension.ftpexpresscommit",
+    "onCommand:extension.ftpexpresssingle",
+    "onCommand:extension.ftpexpressuploadselected",
+    "onCommand:extension.ftpexpressdownloadselected",
+    "onCommand:extension.ftpexpresslistselected",
+    "onCommand:extension.ftpexpresscancel",
+    "workspaceContains:.vscode/ftp-express.json"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.ftpexpressinit",
+        "title": "FTP Express: Init"
+      },
+      {
+        "command": "extension.ftpexpressupload",
+        "title": "FTP Express: Upload"
+      },
+      {
+        "command": "extension.ftpexpressdownload",
+        "title": "FTP Express: Download"
+      },
+      {
+        "command": "extension.ftpexpresscommit",
+        "title": "FTP Express: Commit"
+      },
+      {
+        "command": "extension.ftpexpresssingle",
+        "title": "FTP Express: Sync File"
+      },
+      {
+        "command": "extension.ftpexpressuploadselected",
+        "title": "FTP Express: Upload Selected"
+      },
+      {
+        "command": "extension.ftpexpressdownloadselected",
+        "title": "FTP Express: Download Selected"
+      },
+      {
+        "command": "extension.ftpexpresslistselected",
+        "title": "FTP Express: List Selected"
+      },
+      {
+        "command": "extension.ftpexpresscancel",
+        "title": "FTP Express: Cancel"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "FTP Sync Configuration",
+      "properties": {
+        "ftp-sync.bulk.batchSize": {
+          "type": "number",
+          "default": 10,
+          "description": "Number of files to process in each batch"
+        },
+        "ftp-sync.bulk.batchTimeout": {
+          "type": "number",
+          "default": 1000,
+          "description": "Milliseconds to wait before processing batch"
+        },
+        "ftp-sync.bulk.maxRetries": {
+          "type": "number",
+          "default": 3,
+          "description": "Maximum retries for failed operations"
+        },
+        "ftp-sync.bulk.showProgress": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show progress notification"
+        }
+      }
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.ftpexpressuploadselected",
+          "group": "extension",
+          "when": "!explorerResourceIsFolder"
+        },
+        {
+          "command": "extension.ftpexpressdownloadselected",
+          "group": "extension",
+          "when": "!explorerResourceIsFolder"
+        },
+        {
+          "command": "extension.ftpexpresslistselected",
+          "group": "extension",
+          "when": "!explorerResourceIsFolder"
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "vscode": "0.10.x",
+    "mocha": "^9.1.3",
+    "sinon": "^12.0.1",
+    "chai": "^4.3.4"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.test.js",
+    "test:watch": "mocha test/**/*.test.js --watch"
+  },
+  "dependencies": {
+    "fs-cp": "^1.3.1",
+    "fs-walk": "0.0.1",
+    "ftp": "^0.3.10",
+    "lodash": "~4.11.1",
+    "mkdirp": "^0.5.1",
+    "scp2": "^0.5.0",
+    "ssh2": "^0.6",
+    "stat-mode": "^0.2.1",
+    "upath": "0.1.6"
+  }
+}

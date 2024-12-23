@@ -1,0 +1,11 @@
+node_modules/
+.vscode/
+.DS_Store
+*.vsix
+.vscode-test/
+coverage/
+npm-debug.log
+yarn-error.log
+package-lock.json
+.env
+ftp-test
